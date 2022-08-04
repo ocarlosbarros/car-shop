@@ -3,7 +3,7 @@ import chai from 'chai';
 const { expect } = chai;
 
 import Car from '../../../models/Car';
-import carMock from '../../mocks/carMock';
+import { carMock, carMockWithId } from '../../mocks/carMock';
 import { Model } from 'mongoose';
 
 
@@ -14,7 +14,7 @@ describe('Car model', () => {
   before(async () => {
     sinon
         .stub(Model, 'create')
-        .resolves(carMock);
+        .resolves(carMockWithId);
   });
 
   after(()=>{
@@ -25,7 +25,7 @@ describe('Car model', () => {
 
       it('Car created successfully', async () => {
         const newCar = await carModel.create(carMock);
-        expect(newCar).to.be.eql(newCar)
+        expect(newCar).to.be.eql(carMockWithId)
       });
   });
 
