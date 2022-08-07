@@ -9,6 +9,11 @@ class CarService implements IService<ICar> {
     this._car = model;
   }
 
+  public async read(): Promise<Array<ICar>> {
+    const carList = await this._car.read();
+    return carList;
+  }
+
   public async create(entity: ICar): Promise<ICar> {
     const parsed = carZodSchema.safeParse(entity);
 
