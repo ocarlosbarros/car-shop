@@ -8,6 +8,11 @@ abstract class AbstractModel<T> implements IModel<T> {
     this._model = model;
   }
   
+  public async read(): Promise<T[]> {
+    const carList = await this._model.find();
+    return carList;
+  }
+  
   public async create(entity: T): Promise<T> {
     const created = await this._model.create({ ...entity });
     return created;
